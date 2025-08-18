@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sublease Agreement</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            color: #333;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        input[type="text"], input[type="date"], input[type="number"], textarea, select {
+            border: none;
+            border-bottom: 1px solid #333;
+            background: transparent;
+            font-size: 14px;
+            padding: 5px 0;
+            width: auto;
+            min-width: 150px;
+        }
+        input[type="text"]:focus, input[type="date"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
+            outline: none;
+            border-bottom: 2px solid #007bff;
+        }
+        input[type="checkbox"] {
+            transform: scale(1.2);
+            margin-right: 8px;
+            margin-left: 5px;
+        }
+        .wide-input {
+            min-width: 300px;
+        }
+        .full-width {
+            width: 100%;
+            min-width: 100%;
+        }
+        textarea {
+            min-height: 60px;
+            resize: vertical;
+        }
+        .signature-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+        .signature-box {
+            width: 45%;
+            margin-bottom: 30px;
+            min-width: 250px;
+        }
+        .signature-line {
+            border-bottom: 1px solid #333;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+        .print-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 20px 0;
+        }
+        .print-btn:hover {
+            background-color: #0056b3;
+        }
+        @media print {
+            .print-btn {
+                display: none;
+            }
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-decoration: underline;
+        }
+        .checkbox {
+            margin-right: 10px;
+        }
+        .amount-box {
+            display: inline-block;
+            min-width: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>SUBLEASE AGREEMENT</h1>
+    </div>
+
+    <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
+
+    <div class="section">
+        <p>This Sublease Agreement is entered into on <input type="date" placeholder="Date"> between:</p>
+        
+        <p><strong>SUBLESSOR:</strong> <input type="text" class="wide-input" placeholder="Full Name"> ("Sublessor")<br>
+        
+        <p><strong>SUBLESSEE:</strong> <input type="text" class="wide-input" placeholder="Full Name"> ("Sublessee")<br>
+    </div>
+
+    <div class="section">
+        <div class="section-title">1. PREMISES</div>
+        <p>The Sublessor hereby subleases to the Sublessee the following described premises:</p>
+        <p>Property Address: <input type="text" class="full-width" placeholder="Complete Property Address"></p>
+        <p>Unit/Apartment Number: <input type="text" placeholder="Unit Number"> (if applicable)</p>
+        <p>Description of Space: <textarea class="full-width" placeholder="Describe the space being subleased (e.g., entire apartment, single room, etc.)"></textarea></p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">2. TERM</div>
+        <p>The term of this sublease shall commence on <input type="date"> and end on <input type="date">.</p>
+        <p><input type="checkbox" id="month-to-month"> <label for="month-to-month">Month-to-month tenancy after initial term expires</label><br>
+        <input type="checkbox" id="term-end"> <label for="term-end">Sublease terminates at end of term</label></p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">3. RENT (GERMAN RENT RESTRICTIONS)</div>
+        <p>The Sublessee agrees to pay rent in the amount of €<input type="number" class="amount-box" placeholder="Amount"> per <select>
+            <option value="">Select period</option>
+            <option value="month">month</option>
+            <option value="week">week</option>
+        </select>.</p>
+        <p><strong>IMPORTANT:</strong> Under German law (§5 Wirtschaftsstrafgesetz), the Sublessor cannot charge more than the proportional rent paid to the Master Landlord, except for furnished accommodation or additional services.</p>
+        <p>Master Landlord rent: €<input type="number" class="amount-box" placeholder="Amount"> per month</p>
+        <p><input type="checkbox" id="furnished-rent"> <label for="furnished-rent">Rent includes furniture/additional services justifying higher amount</label></p>
+        <p>Rent is due on the <input type="text" placeholder="day"> day of each month.</p>
+        <p>Rent shall be paid to: <input type="text" class="wide-input" placeholder="Payment recipient"></p>
+        <p>Payment method: <input type="text" class="wide-input" placeholder="Bank transfer (SEPA), cash, etc."></p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">4. SECURITY DEPOSIT (KAUTION)</div>
+        <p><input type="checkbox" id="deposit-required"> <label for="deposit-required">A security deposit (Kaution) of €<input type="number" class="amount-box" placeholder="Amount"> is required</label></p>
+        <p><input type="checkbox" id="no-deposit"> <label for="no-deposit">No security deposit required</label></p>
+        <p>The security deposit shall be returned within <select>
+            <option value="">Select timeframe</option>
+            <option value="14">14 days</option>
+            <option value="30">30 days</option>
+            <option value="60">60 days</option>
+        </select> after termination, less any deductions for damages or unpaid rent.</p>
+        <p><input type="checkbox" id="separate-account"> <label for="separate-account">Deposit will be held in separate interest-bearing account (recommended practice)</label></p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">5. UTILITIES AND SERVICES</div>
+        <p>The following utilities/services are included in rent:</p>
+        <p><input type="checkbox" id="elec-inc"> <label for="elec-inc">Electricity</label>
+        <input type="checkbox" id="gas-inc"> <label for="gas-inc">Gas</label>
+        <input type="checkbox" id="water-inc"> <label for="water-inc">Water</label>
+        <input type="checkbox" id="sewer-inc"> <label for="sewer-inc">Sewer</label><br>
+        <input type="checkbox" id="trash-inc"> <label for="trash-inc">Trash</label>
+        <input type="checkbox" id="internet-inc"> <label for="internet-inc">Internet</label>
+        <input type="checkbox" id="cable-inc"> <label for="cable-inc">Cable/TV</label></p>
+        <p><input type="checkbox" id="other-inc"> <label for="other-inc">Other:</label> <input type="text" class="wide-input" placeholder="Specify other included utilities"></p>
+        
+        <p>The Sublessee is responsible for:</p>
+        <p><input type="checkbox" id="elec-resp"> <label for="elec-resp">Electricity</label>
+        <input type="checkbox" id="gas-resp"> <label for="gas-resp">Gas</label>
+        <input type="checkbox" id="water-resp"> <label for="water-resp">Water</label>
+        <input type="checkbox" id="sewer-resp"> <label for="sewer-resp">Sewer</label><br>
+        <input type="checkbox" id="trash-resp"> <label for="trash-resp">Trash</label>
+        <input type="checkbox" id="internet-resp"> <label for="internet-resp">Internet</label>
+        <input type="checkbox" id="cable-resp"> <label for="cable-resp">Cable/TV</label></p>
+        <p><input type="checkbox" id="other-resp"> <label for="other-resp">Other:</label> <input type="text" class="wide-input" placeholder="Specify other utilities"></p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">6. USE OF PREMISES</div>
+        <p>The premises shall be used exclusively for residential purposes by the Sublessee and no more than <input type="number" style="width: 30px;"> additional occupants.</p>
+        <p><input type="checkbox" id="smoking-ok"> <label for="smoking-ok">Smoking permitted</label>
+        <input type="checkbox" id="no-smoking"> <label for="no-smoking">No smoking</label><br>
+        <input type="checkbox" id="pets-ok"> <label for="pets-ok">Pets permitted</label>
+        <input type="checkbox" id="no-pets"> <label for="no-pets">No pets</label><br>
+        If pets permitted, describe restrictions: <input type="text" class="wide-input" placeholder="Pet restrictions"></p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">7. MASTER LEASE & LANDLORD CONSENT (GERMAN LAW REQUIREMENT)</div>
+        <p>This sublease is subject to the terms of the master lease dated <input type="date"> between the Sublessor and <input type="text" class="wide-input" placeholder="Landlord/Property Manager Name"> ("Master Landlord").</p>
+        <p><strong>MANDATORY:</strong> <input type="checkbox" id="landlord-consent"> <label for="landlord-consent">Written consent from the Master Landlord for this sublease has been obtained (required under §§ 540, 553 BGB)</label></p>
+        <p><input type="checkbox" id="consent-attached"> <label for="consent-attached">Copy of landlord consent letter attached</label>
+        <input type="checkbox" id="consent-pending"> <label for="consent-pending">Consent pending</label></p>
+        <p>The Sublessee agrees to comply with all terms and conditions of the master lease. A copy of the master lease has been provided to the Sublessee: 
+        <input type="checkbox" id="lease-provided"> <label for="lease-provided">Yes</label>
+        <input type="checkbox" id="lease-not-provided"> <label for="lease-not-provided">No</label></p>
+        <p><strong>Legitimate Interest for Subletting:</strong> <input type="text" class="full-width" placeholder="State reason for subletting (e.g., financial hardship, temporary relocation, etc.)"></p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">8. CONDITION OF PREMISES</div>
+        <p>The Sublessee acknowledges that the premises are in acceptable condition. Any existing damages or defects are noted as follows:</p>
+        <textarea class="full-width" placeholder="List any existing damages or defects" style="min-height: 80px;"></textarea>
+    </div>
+
+    <div class="section">
+        <div class="section-title">9. MAINTENANCE AND REPAIRS</div>
+        <p>☐ Sublessor responsible for all maintenance and repairs<br>
+        ☐ Sublessee responsible for minor maintenance (under $<input type="number" class="amount-box" placeholder="Amount">)<br>
+        ☐ Other arrangement: <input type="text" class="wide-input" placeholder="Specify arrangement"></p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">10. INSURANCE</div>
+        <p><input type="checkbox" id="insurance-required"> <label for="insurance-required">Sublessee required to obtain renter's insurance</label><br>
+        <input type="checkbox" id="insurance-not-required"> <label for="insurance-not-required">Sublessee not required to obtain renter's insurance</label></p>
+        <p>The Sublessor's insurance does not cover the Sublessee's personal property or liability.</p>
+    </div>
+
+    <div class="section">
+        <div class="section-title">11. TERMINATION (KÜNDIGUNG)</div>
+        <p>Under German law, termination requires written notice. This agreement may be terminated by either party with <select>
+            <option value="">Select notice period</option>
+            <option value="30">30 days</option>
+            <option value="60">60 days</option>
+            <option value="90">90 days</option>
+        </select> written notice (minimum 3 months for main tenant protection).</p>
+        <p><input type="checkbox" id="third-working-day"> <label for="third-working-day">Notice must be received by 3rd working day of month to be effective for end of corresponding month</label></p>
+        <p>Termination must be delivered: 
+        <input type="checkbox" id="registered-mail"> <label for="registered-mail">By registered mail</label>
+        <input type="checkbox" id="personal-delivery"> <label for="personal-delivery">By personal delivery with receipt</label></p>
+        <p>Additional termination conditions:</p>
+        <textarea class="full-width" placeholder="Specify any additional termination conditions"></textarea>
+    </div>
+
+    <div class="section">
+        <div class="section-title">12. BERLIN-SPECIFIC REQUIREMENTS</div>
+        <div style="margin-left: 20px;">
+            <p><strong>A) ANMELDUNG (ADDRESS REGISTRATION)</strong></p>
+            <p>The Sublessor agrees to provide the Sublessee with a "Wohnungsgeberbestätigung" (landlord confirmation) for address registration at the Bürgeramt.</p>
+            <p><input type="checkbox" id="wohnung-provision"> <label for="wohnung-provision">Wohnungsgeberbestätigung will be provided within <select>
+                <option value="">Select timeframe</option>
+                <option value="3">3 days</option>
+                <option value="7">7 days</option>
+                <option value="14">14 days</option>
+            </select></label></p>
+            <p><input type="checkbox" id="registration-requirement"> <label for="registration-requirement">Sublessee must register within 14 days of move-in (legal requirement)</label></p>
+            
+            <p><strong>B) ZWECKENTFREMDUNGSVERBOT (BERLIN HOUSING LAW)</strong></p>
+            <p>This sublease complies with Berlin's law prohibiting repurposing of residential housing:</p>
+            <p><input type="checkbox" id="residential-only"> <label for="residential-only">Sublease is for residential use only (not short-term vacation rental)</label></p>
+            <p><input type="checkbox" id="duration-compliant"> <label for="duration-compliant">Duration exceeds minimum residential tenancy requirements</label></p>
+            <p><input type="checkbox" id="no-commercial"> <label for="no-commercial">No commercial use of premises permitted</label></p>
+            
+            <p><strong>C) MINIMUM SPACE REQUIREMENTS</strong></p>
+            <p>In Berlin, minimum space per person is 9m² (6m² for children under 6).</p>
+            <p>Total space being sublet: <input type="number" class="amount-box" placeholder="m²"> m²</p>
+            <p>Number of occupants: <input type="number" style="width: 30px;"> (confirms compliance with space requirements)</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="section-title">13. ADDITIONAL TERMS</div>
+        <textarea class="full-width" placeholder="Add any additional terms, conditions, or special agreements" style="min-height: 100px;"></textarea>
+    </div>
+
+    <div class="section">
+        <div class="section-title">14. GOVERNING LAW</div>
+        <p>This agreement shall be governed by German law (BGB - Bürgerliches Gesetzbuch) and Berlin local housing regulations.</p>
+    </div>
+
+    <div class="section">
+        <p>By signing below, both parties agree to the terms and conditions set forth in this Sublease Agreement.</p>
+    </div>
+
+    <div class="signature-section">
+        <div class="signature-box">
+            <div class="signature-line"></div>
+            <p><strong>SUBLESSOR SIGNATURE</strong></p>
+            <p>Print Name: <input type="text" class="wide-input"></p>
+            <p>Date: <input type="date"></p>
+        </div>
+        
+        <div class="signature-box">
+            <div class="signature-line"></div>
+            <p><strong>SUBLESSEE SIGNATURE</strong></p>
+            <p>Print Name: <input type="text" class="wide-input"></p>
+            <p>Date: <input type="date"></p>
+        </div>
+    </div>
+
+    <div style="margin-top: 40px; font-size: 12px; color: #666;">
+        <p><strong>DISCLAIMER:</strong> This document is a template and may not address all legal requirements in your jurisdiction. It is recommended to consult with a qualified attorney before using this agreement. Laws vary by state and locality.</p>
+    </div>
+</body>
+</html>
