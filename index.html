@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -41,7 +41,7 @@
             margin-left: 5px;
         }
         .wide-input {
-            min-width: 300px;
+            min-width: 400px !important;
         }
         .full-width {
             width: 100%;
@@ -101,6 +101,18 @@
             min-width: 100px;
             text-align: center;
         }
+        .german-date-input {
+            position: relative;
+            display: inline-block;
+        }
+        .german-date-input input[type="text"] {
+            min-width: 100px;
+        }
+        .german-date-input input[type="date"] {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
     </style>
 </head>
 <body>
@@ -111,11 +123,11 @@
     <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
 
     <div class="section">
-        <p>This Sublease Agreement is entered into on <input type="date" placeholder="Date"> between:</p>
+        <p>This Sublease Agreement is entered into on <span class="german-date-input"><input type="text" placeholder="dd/mm/yyyy" data-date-input="true"><input type="date"></span> between:</p>
         
         <p><strong>SUBLESSOR:</strong> <input type="text" class="wide-input" placeholder="Full Name"> ("Sublessor")<br>
         
-        <p><strong>SUBLESSEE:</strong> <input type="text" class="wide-input" placeholder="Full Name"> ("Sublessee")<br>
+        <p><strong>SUBLESSEE:</strong> <input type="text" class="wide-input" placeholder="Full Name"> ("Sublessee")</p>
     </div>
 
     <div class="section">
@@ -128,7 +140,7 @@
 
     <div class="section">
         <div class="section-title">2. TERM</div>
-        <p>The term of this sublease shall commence on <input type="date"> and end on <input type="date">.</p>
+        <p>The term of this sublease shall commence on <span class="german-date-input"><input type="text" placeholder="dd/mm/yyyy" data-date-input="true"><input type="date"></span> and end on <span class="german-date-input"><input type="text" placeholder="dd/mm/yyyy" data-date-input="true"><input type="date"></span>.</p>
         <p><input type="checkbox" id="month-to-month"> <label for="month-to-month">Month-to-month tenancy after initial term expires</label><br>
         <input type="checkbox" id="term-end"> <label for="term-end">Sublease terminates at end of term</label></p>
     </div>
@@ -195,18 +207,6 @@
     </div>
 
     <div class="section">
-        <div class="section-title">7. MASTER LEASE & LANDLORD CONSENT (GERMAN LAW REQUIREMENT)</div>
-        <p>This sublease is subject to the terms of the master lease dated <input type="date"> between the Sublessor and <input type="text" class="wide-input" placeholder="Landlord/Property Manager Name"> ("Master Landlord").</p>
-        <p><strong>MANDATORY:</strong> <input type="checkbox" id="landlord-consent"> <label for="landlord-consent">Written consent from the Master Landlord for this sublease has been obtained (required under §§ 540, 553 BGB)</label></p>
-        <p><input type="checkbox" id="consent-attached"> <label for="consent-attached">Copy of landlord consent letter attached</label>
-        <input type="checkbox" id="consent-pending"> <label for="consent-pending">Consent pending</label></p>
-        <p>The Sublessee agrees to comply with all terms and conditions of the master lease. A copy of the master lease has been provided to the Sublessee: 
-        <input type="checkbox" id="lease-provided"> <label for="lease-provided">Yes</label>
-        <input type="checkbox" id="lease-not-provided"> <label for="lease-not-provided">No</label></p>
-        <p><strong>Legitimate Interest for Subletting:</strong> <input type="text" class="full-width" placeholder="State reason for subletting (e.g., financial hardship, temporary relocation, etc.)"></p>
-    </div>
-
-    <div class="section">
         <div class="section-title">8. CONDITION OF PREMISES</div>
         <p>The Sublessee acknowledges that the premises are in acceptable condition. Any existing damages or defects are noted as follows:</p>
         <textarea class="full-width" placeholder="List any existing damages or defects" style="min-height: 80px;"></textarea>
@@ -214,9 +214,9 @@
 
     <div class="section">
         <div class="section-title">9. MAINTENANCE AND REPAIRS</div>
-        <p>☐ Sublessor responsible for all maintenance and repairs<br>
-        ☐ Sublessee responsible for minor maintenance (under $<input type="number" class="amount-box" placeholder="Amount">)<br>
-        ☐ Other arrangement: <input type="text" class="wide-input" placeholder="Specify arrangement"></p>
+        <p><input type="checkbox" id="sublessor-maintenance"> <label for="sublessor-maintenance">Sublessor responsible for all maintenance and repairs</label><br>
+        <input type="checkbox" id="sublessee-maintenance"> <label for="sublessee-maintenance">Sublessee responsible for minor maintenance (under $<input type="number" class="amount-box" placeholder="Amount">)</label><br>
+        <input type="checkbox" id="other-maintenance"> <label for="other-maintenance">Other arrangement: <input type="text" class="wide-input" placeholder="Specify arrangement"></label></p>
     </div>
 
     <div class="section">
@@ -243,32 +243,6 @@
     </div>
 
     <div class="section">
-        <div class="section-title">12. BERLIN-SPECIFIC REQUIREMENTS</div>
-        <div style="margin-left: 20px;">
-            <p><strong>A) ANMELDUNG (ADDRESS REGISTRATION)</strong></p>
-            <p>The Sublessor agrees to provide the Sublessee with a "Wohnungsgeberbestätigung" (landlord confirmation) for address registration at the Bürgeramt.</p>
-            <p><input type="checkbox" id="wohnung-provision"> <label for="wohnung-provision">Wohnungsgeberbestätigung will be provided within <select>
-                <option value="">Select timeframe</option>
-                <option value="3">3 days</option>
-                <option value="7">7 days</option>
-                <option value="14">14 days</option>
-            </select></label></p>
-            <p><input type="checkbox" id="registration-requirement"> <label for="registration-requirement">Sublessee must register within 14 days of move-in (legal requirement)</label></p>
-            
-            <p><strong>B) ZWECKENTFREMDUNGSVERBOT (BERLIN HOUSING LAW)</strong></p>
-            <p>This sublease complies with Berlin's law prohibiting repurposing of residential housing:</p>
-            <p><input type="checkbox" id="residential-only"> <label for="residential-only">Sublease is for residential use only (not short-term vacation rental)</label></p>
-            <p><input type="checkbox" id="duration-compliant"> <label for="duration-compliant">Duration exceeds minimum residential tenancy requirements</label></p>
-            <p><input type="checkbox" id="no-commercial"> <label for="no-commercial">No commercial use of premises permitted</label></p>
-            
-            <p><strong>C) MINIMUM SPACE REQUIREMENTS</strong></p>
-            <p>In Berlin, minimum space per person is 9m² (6m² for children under 6).</p>
-            <p>Total space being sublet: <input type="number" class="amount-box" placeholder="m²"> m²</p>
-            <p>Number of occupants: <input type="number" style="width: 30px;"> (confirms compliance with space requirements)</p>
-        </div>
-    </div>
-
-    <div class="section">
         <div class="section-title">13. ADDITIONAL TERMS</div>
         <textarea class="full-width" placeholder="Add any additional terms, conditions, or special agreements" style="min-height: 100px;"></textarea>
     </div>
@@ -287,19 +261,104 @@
             <div class="signature-line"></div>
             <p><strong>SUBLESSOR SIGNATURE</strong></p>
             <p>Print Name: <input type="text" class="wide-input"></p>
-            <p>Date: <input type="date"></p>
+            <p>Date: <span class="german-date-input"><input type="text" placeholder="dd/mm/yyyy" data-date-input="true"><input type="date"></span></p>
         </div>
         
         <div class="signature-box">
             <div class="signature-line"></div>
             <p><strong>SUBLESSEE SIGNATURE</strong></p>
             <p>Print Name: <input type="text" class="wide-input"></p>
-            <p>Date: <input type="date"></p>
+            <p>Date: <span class="german-date-input"><input type="text" placeholder="dd/mm/yyyy" data-date-input="true"><input type="date"></span></p>
         </div>
     </div>
 
     <div style="margin-top: 40px; font-size: 12px; color: #666;">
         <p><strong>DISCLAIMER:</strong> This document is a template and may not address all legal requirements in your jurisdiction. It is recommended to consult with a qualified attorney before using this agreement. Laws vary by state and locality.</p>
     </div>
+
+    <script>
+        // German date format conversion functions
+        function formatDateToGerman(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString);
+            if (isNaN(date.getTime())) return '';
+            
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const year = date.getFullYear();
+            
+            return `${day}/${month}/${year}`;
+        }
+
+        function parseGermanDate(germanDateString) {
+            if (!germanDateString) return '';
+            
+            // Parse dd/mm/yyyy format
+            const parts = germanDateString.split('/');
+            if (parts.length !== 3) return '';
+            
+            const day = parseInt(parts[0], 10);
+            const month = parseInt(parts[1], 10) - 1; // Month is 0-indexed
+            const year = parseInt(parts[2], 10);
+            
+            if (isNaN(day) || isNaN(month) || isNaN(year)) return '';
+            
+            const date = new Date(year, month, day);
+            if (isNaN(date.getTime())) return '';
+            
+            return date.toISOString().split('T')[0];
+        }
+
+        // Initialize date inputs
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInputs = document.querySelectorAll('[data-date-input="true"]');
+            
+            dateInputs.forEach(function(textInput) {
+                const dateInput = textInput.nextElementSibling;
+                
+                // Set initial value if date input has a value
+                if (dateInput.value) {
+                    textInput.value = formatDateToGerman(dateInput.value);
+                }
+                
+                // Handle text input changes (German format)
+                textInput.addEventListener('input', function(e) {
+                    const germanDate = e.target.value;
+                    const isoDate = parseGermanDate(germanDate);
+                    
+                    if (isoDate) {
+                        dateInput.value = isoDate;
+                    }
+                });
+                
+                // Handle date input changes (ISO format)
+                dateInput.addEventListener('change', function(e) {
+                    textInput.value = formatDateToGerman(e.target.value);
+                });
+                
+                // Handle focus - show placeholder if empty
+                textInput.addEventListener('focus', function() {
+                    if (!this.value) {
+                        this.placeholder = 'dd/mm/yyyy';
+                    }
+                });
+                
+                // Handle blur - validate and format
+                textInput.addEventListener('blur', function() {
+                    if (this.value) {
+                        const isoDate = parseGermanDate(this.value);
+                        if (isoDate) {
+                            dateInput.value = isoDate;
+                            this.value = formatDateToGerman(isoDate);
+                        } else {
+                            // Invalid date, clear both inputs
+                            this.value = '';
+                            dateInput.value = '';
+                        }
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
